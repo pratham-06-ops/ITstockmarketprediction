@@ -1,0 +1,28 @@
+flowchart TD
+    subgraph UserFlow [User Activity]
+        UA[User opens prediction page]
+        UB[User selects stock & duration]
+        UC[User submits prediction request]
+        UD[React app sends API request]
+        UE[Backend receives request]
+        UF[Backend validates input]
+        UG[Backend fetches data from MongoDB]
+        UH[Backend runs prediction model]
+        UI[Backend generates result]
+        UJ[Backend sends response to frontend]
+        UK[Frontend displays result]
+        UA --> UB --> UC --> UD --> UE
+        UE --> UF --> UG --> UH --> UI --> UJ --> UK
+    end
+
+    subgraph AdminFlow [Admin Activity]
+        AA[Admin opens dashboard]
+        AB[Admin views user list]
+        AC[Admin adds/edits/deletes user]
+        AD[Admin views all predictions]
+        AE[Admin makes prediction]
+        AF[Admin manages stock data]
+        AA --> AB --> AC
+        AA --> AD --> AE
+        AA --> AF
+    end

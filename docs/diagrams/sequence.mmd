@@ -1,0 +1,18 @@
+sequenceDiagram
+  participant User
+  participant ReactApp
+  participant APIService
+  participant FlaskBackend
+  participant ModelLogic
+  participant MongoDB
+
+  User->>ReactApp: Fill prediction form & submit
+  ReactApp->>APIService: Call predict API (Axios)
+  APIService->>FlaskBackend: POST /predict
+  FlaskBackend->>ModelLogic: Run prediction (LSTM/other)
+  ModelLogic->>MongoDB: Fetch historical data
+  MongoDB-->>ModelLogic: Return stock data
+  ModelLogic-->>FlaskBackend: Return prediction result
+  FlaskBackend-->>APIService: Respond with JSON
+  APIService-->>ReactApp: Update UI with result
+  ReactApp-->>User: Show prediction, charts, indicators

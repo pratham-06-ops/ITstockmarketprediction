@@ -1,0 +1,67 @@
+graph TD
+  subgraph UserUseCases[User Use Cases]
+    User((User))
+    U1[Login/Register]
+    U2[View Dashboard]
+    U3[Make Prediction]
+    U4[View Prediction Result]
+    U5[View History]
+    U6[Change Password]
+    U7[View Charts]
+    U8[View Current Price]
+    User --> U1
+    User --> U2
+    User --> U3
+    User --> U4
+    User --> U5
+    User --> U6
+    User --> U7
+    User --> U8
+    U1 --> UC9[Authenticate User]
+    U2 --> UC10[Store/Fetch User Data]
+    U3 --> UC11[Run Prediction Model]
+    U3 --> UC12[Fetch Stock Data]
+    U3 --> UC13[Store/Fetch Prediction]
+    U4 --> UC13
+    U5 --> UC13
+    U7 --> UC12
+    U8 --> UC12
+  end
+
+  subgraph AdminUseCases[Admin Use Cases]
+    Admin((Admin))
+    A1[View Dashboard]
+    A2[Make Prediction]
+    A3[View Prediction Result]
+    A4[View History]
+    A5[Change Password]
+    A6[View Charts]
+    A7[View Current Price]
+    A8[Manage Users]
+    A9[View All Predictions]
+    A10[Manage Stock Data]
+    Admin --> A1
+    Admin --> A2
+    Admin --> A3
+    Admin --> A4
+    Admin --> A5
+    Admin --> A6
+    Admin --> A7
+    Admin --> A8
+    Admin --> A9
+    Admin --> A10
+    A1 --> UC10
+    A2 --> UC11
+    A2 --> UC12
+    A2 --> UC13
+    A3 --> UC13
+    A4 --> UC13
+    A6 --> UC12
+    A7 --> UC12
+    A8 --> UC14[Admin: Manage Users]
+    A9 --> UC15[Admin: View All Predictions]
+    A10 --> UC16[Admin: Manage Stock Data]
+    A8 --> UC10
+    A9 --> UC13
+    A10 --> UC12
+  end

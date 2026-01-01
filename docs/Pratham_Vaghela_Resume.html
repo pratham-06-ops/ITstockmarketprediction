@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pratham Vaghela — Resume</title>
+  <style>
+    /* Base typography */
+    :root {
+      --text: #111111;
+      --muted: #555555;
+      --accent: #0b5fff;
+      --accent-soft: #eef3ff;
+      --rule: #e5e7eb;
+    }
+    html, body {
+      padding: 0;
+      margin: 0;
+      color: var(--text);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 11.5pt;
+      line-height: 1.35;
+    }
+    .page {
+      max-width: 794px; /* A4 width at 96dpi */
+      margin: 24px auto;
+      padding: 28px 36px;
+      background: #ffffff;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+      border: 1.5px solid #d9e0ee; /* page frame */
+      position: relative;
+    }
+    h1 {
+      font-size: 20pt;
+      margin: 0 0 6px 0;
+      letter-spacing: 0.2px;
+    }
+    h2 {
+      font-size: 12pt;
+      margin: 18px 0 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .muted { color: var(--muted); }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .spacer-8 { height: 8px; }
+    .spacer-12 { height: 12px; }
+    .spacer-16 { height: 16px; }
+    .rule { height: 1px; background: var(--rule); margin: 10px 0 0 0; }
+    .contact a { color: var(--text); text-decoration: none; }
+    .contact a:hover { color: var(--accent); }
+    .section { margin-top: 14px; }
+    ul { margin: 6px 0 0 0; padding-left: 18px; }
+    li { margin: 4px 0; }
+    .two-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+    .tag { white-space: nowrap; }
+    .edu-item, .exp-item, .proj-item { margin-bottom: 8px; }
+    .title-row { display: flex; justify-content: space-between; gap: 12px; }
+    .title { font-weight: 600; }
+    .subtitle { color: var(--muted); }
+    .nowrap { white-space: nowrap; }
+    .small { font-size: 10.5pt; }
+
+    /* Two-column resume layout resembling sample */
+    .name-block { text-align: center; margin-bottom: 6px; }
+    .name-block h1 { letter-spacing: 2px; font-size: 22pt; margin-bottom: 4px; }
+    .name-subtitle { text-transform: uppercase; letter-spacing: 3px; font-size: 10pt; color: var(--muted); }
+    .contactbar { display:flex; justify-content:center; gap:14px; margin: 8px 0 10px 0; font-size: 10.5pt; color: var(--muted); }
+    .contactbar a { color: inherit; text-decoration: none; border-bottom: 1px dotted transparent; }
+    .contactbar a:hover { color: var(--text); border-bottom-color: var(--text); }
+    .layout { display: grid; grid-template-columns: 34% 66%; gap: 24px; align-items: start; }
+    .sidebar { background: #f7f9fc; padding: 16px 16px 18px 16px; border: 1px solid #e5e7eb; position: relative; }
+    .sidebar::before { content: ""; position: absolute; left: -1px; top: -1px; bottom: -1px; width: 6px; background: linear-gradient(180deg, #0b5fff, #6aa5ff); border-top-left-radius: 2px; border-bottom-left-radius: 2px; }
+    .sidebar h2 { margin-top: 10px; }
+    .sidebar .section { margin-top: 12px; }
+    .v-divider { height: 1px; background: var(--rule); margin: 14px 0; }
+    .maincol { padding: 0 4px; }
+    .section-head { border-bottom: 2px solid var(--rule); padding-bottom: 6px; margin-bottom: 8px; position: relative; }
+    .section-head::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 60px; height: 2px; background: var(--accent); }
+    .list-tight li { margin: 2px 0; }
+    .pill { display:inline-block; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: #0b3aa6; border: 1px solid #d7e2ff; margin: 2px 4px 2px 0; font-size: 10pt; }
+    .pill-row { margin-top: 4px; }
+    .card { border: 1px solid #e6e9f2; border-radius: 6px; padding: 12px 14px; margin: 12px 0; background: #fff; box-shadow: 0 1px 2px rgba(16,24,40,0.04); }
+    .card .title { font-weight: 600; }
+    .card .subtitle { color: var(--muted); }
+    .dotlist { list-style: none; padding-left: 0; margin: 6px 0 0 0; }
+    .dotlist li { position: relative; padding-left: 14px; margin: 6px 0; }
+    .dotlist li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+    @media print {
+      body { margin: 0; }
+      .page { box-shadow: none; margin: 0; max-width: initial; padding: 20mm 15mm; }
+      a { color: inherit; text-decoration: none; }
+      .rule { background: #d9d9d9; }
+      .sidebar { background: #f7f9fc !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section-head::after { background: #0b5fff !important; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="description" content="Resume of Pratham Vaghela, MCA student focusing on Python, Java, and web application development with interests in predictive analytics." />
+</head>
+<body>
+  <main class="page" role="document">
+    <div class="name-block">
+      <h1>VAGHELA PRATHAM DHIRAJBHAI</h1>
+      <div class="name-subtitle">Student</div>
+    </div>
+    <div class="contactbar small">
+      <span>Ahmedabad, IN</span>
+      <span>•</span>
+      <a href="mailto:prathamvaghela702@gmail.com">prathamvaghela702@gmail.com</a>
+      <span>•</span>
+      <a href="tel:+919925437564">+91 99254 37564</a>
+      <span>•</span>
+      <a href="https://www.linkedin.com/in/pratham-vaghela-77b50727a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" rel="noreferrer">LinkedIn</a>
+      <span>•</span>
+      <a href="https://github.com/pratham-06-ops" rel="noreferrer">GitHub</a>
+    </div>
+    <div class="layout">
+      <!-- Left sidebar -->
+      <aside class="sidebar">
+        <section class="section" aria-label="About">
+          <h2 class="section-head">About Me</h2>
+          <div class="small">
+            Motivated and detail‑oriented MCA student with hands‑on experience in Python, Java, and web technologies. Eager to build scalable, user‑friendly web applications and explore predictive analytics for IT and finance.
+          </div>
+          <div class="v-divider"></div>
+          <div class="small">
+            <div class="row" style="gap:6px 12px; align-items:flex-start;">
+              <span class="muted">Email:</span> <a href="mailto:prathamvaghela702@gmail.com">prathamvaghela702@gmail.com</a>
+            </div>
+            <div class="row" style="gap:6px 12px; align-items:flex-start;">
+              <span class="muted">Phone:</span> <a href="tel:+919925437564">+91 99254 37564</a>
+            </div>
+            <div class="row" style="gap:6px 12px; align-items:flex-start;">
+              <span class="muted">Address:</span>55, Shivnagar Raw House, TV9, Jivraj Park, Vejalpur, Ahmedabad, Gujarat, India
+            </div>
+            <div class="row" style="gap:6px 12px; align-items:flex-start;">
+              <span class="muted">LinkedIn:</span> <a href="https://www.linkedin.com/in/pratham-vaghela-77b50727a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" rel="noreferrer">View profile</a>
+            </div>
+            <div class="row" style="gap:6px 12px; align-items:flex-start;">
+              <span class="muted">GitHub:</span> <a href="https://github.com/pratham-06-ops" rel="noreferrer">pratham-06-ops</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-label="Technical Skills">
+          <h2 class="section-head">Technical Skills</h2>
+          <div class="small">
+            <div><strong>Backend</strong></div>
+            <div class="pill-row">
+              <span class="pill">Python</span>
+              <span class="pill">CoreJava</span>
+              <span class="pill">C</span>
+            </div>
+            <div style="margin-top:6px;"><strong>Frontend</strong></div>
+            <div class="pill-row">
+              <span class="pill">HTML5</span>
+              <span class="pill">CSS3</span>
+            </div>
+            <div style="margin-top:6px;"><strong>Databases</strong></div>
+            <div class="pill-row">
+              <span class="pill">SQLite</span>
+              <span class="pill">MySQL (basic)</span>
+              <span class="pill">MongoDB</span>
+            </div>
+            <div style="margin-top:6px;"><strong>Launguages</strong></div>
+            <div class="pill-row">
+              <span class="pill">Gujarati</span>
+              <span class="pill">Hindi</span>
+              <span class="pill">English</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-label="Certifications">
+          <h2 class="section-head">Certifications</h2>
+          <ul class="small list-tight">
+            <li>Academic project presentations and coding events (MCA)</li>
+            <li>Active participation in college sports and activities</li>
+          </ul>
+        </section>
+      </aside>
+
+      <!-- Right main column -->
+      <div class="maincol">
+        <section class="section" aria-label="Projects">
+          <h2 class="section-head">Project</h2>
+          <div class="proj-item small card">
+            <div class="title"><strong>IT‑Sector Forecasting Tool for Stock Prediction</strong></div>
+            <div class="subtitle">Python, Data Analysis, ML, Visualization — MCA 3rd Semester</div>
+            <ul class="dotlist">
+              <li>Built a predictive web application to forecast IT stock prices from historical datasets.</li>
+              <li>Applied Python‑based data analysis and machine learning techniques for time‑series prediction.</li>
+              <li>Created dashboards to visualize stock trends and future projections.</li>
+            </ul>
+          </div>
+
+          <div class="proj-item small card">
+            <div class="title"><strong>Clothify — E‑Commerce Website for Clothes</strong></div>
+            <div class="subtitle">React.js, Node.js/Express.js, MySQL Workbench — MCA 2nd Semester</div>
+            <ul class="dotlist">
+              <li>Designed and developed a e-commerce website where user can browse and buy clothes.</li>
+              <li>Implemented User Authentication and Authorization,order management and payment gateway integration.</li>
+            </ul>
+          </div>
+
+          <div class="proj-item small card">
+            <div class="title"><strong>Tours and Travels Management System</strong></div>
+            <div class="subtitle">PHP, MySQL, HTML, CSS, JavaScript — MCA 1st Semester</div>
+            <ul class="dotlist">
+              <li>Created a web app for managing travel packages, bookings and inquiries.</li>
+              <li>Integrated search and contact features for better user experience.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" aria-label="Education">
+          <h2 class="section-head">Education</h2>
+          <div class="edu-item small card">
+            <div class="title-row">
+              <div class="title">Master of Computer Applications (MCA)</div>
+              <div class="subtitle nowrap">Pursuing — 2nd Year</div>
+            </div>
+            <div class="subtitle">Lokmanya Institute of Computer Application</div>
+          </div>
+          <div class="edu-item small card">
+            <div class="title-row">
+              <div class="title">Bachelor of Computer Applications (BCA)</div>
+              <div class="subtitle nowrap">2023</div>
+            </div>
+            <div class="subtitle">Somlalit Institute of Computer Application — CGPA: 5.45</div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script>
+    // No scripts required; HTML is print‑ready.
+  </script>
+  <!--
+    Export to PDF (Chrome/Edge):
+    1) Ctrl+P (Print)
+    2) Destination: Save as PDF
+    3) Pages: All, Layout: Portrait
+    4) Paper Size: A4, Margins: Default (or None)
+    5) Options: Enable background graphics
+  -->
+</body>
+<!-- End of document -->
+</html>
+
+

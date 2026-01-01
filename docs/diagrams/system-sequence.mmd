@@ -1,0 +1,46 @@
+sequenceDiagram
+  autonumber
+  participant User
+  participant ReactApp
+  participant API as API Service (Axios)
+  participant Flask as Flask Backend
+  participant Auth as Flask-Login
+  participant LSTM as LSTM/ModelLogic
+  participant CSV as CSV Files
+  participant DB as MongoDB
+  participant YF as Yahoo Finance
+
+  User->>ReactApp: Login (username/password)
+  ReactApp->>API: POST /api/login
+  API->>Flask: /api/login
+  Flask->>Auth: validate credentials (bcrypt, mongo)
+  Auth-->>Flask: session established
+  Flask-->>API: { user:{ id, username, is_admin } }
+  API-->>ReactApp: store session/cookie
+
+  User->>ReactApp: Make prediction (stock, duration, model)
+  ReactApp->>API: POST /api/predict
+  API->>Flask: /api/predict (login_required)
+  Flask->>CSV: load {stock}_stock_data.csv
+  CSV-->>Flask: DataFrame
+  Flask->>LSTM: preprocess + predict(days_ahead)
+  par optional current price
+    Flask->>YF: fetch current price
+    YF-->>Flask: price
+  end
+  LSTM-->>Flask: prediction payload
+  Flask->>DB: save Prediction (user_id, stock, price, model, confidence)
+  DB-->>Flask: ok
+  Flask-->>API: prediction JSON
+  API-->>ReactApp: render charts/results
+
+  User->>ReactApp: View charts/history
+  ReactApp->>API: GET /api/charts/<stock>, /api/history
+  API->>Flask: fetch charts/history
+  Flask->>DB: read predictions
+  DB-->>Flask: predictions
+  Flask-->>API: charts/history JSON
+  API-->>ReactApp: display data
+
+
+

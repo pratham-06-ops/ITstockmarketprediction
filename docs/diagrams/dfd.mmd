@@ -1,0 +1,44 @@
+flowchart LR
+    subgraph External
+      U[User]
+      A[Admin]
+      YF[Yahoo Finance]
+    end
+
+    subgraph System[Stock Prediction System]
+      FE[React Frontend]
+      API[Flask API]
+      DP[Data Processor]
+      LSTM[LSTM Model]
+      CG[Chart Generator]
+    end
+
+    subgraph Stores
+      CSV[(CSV Files\nTCS/WIPRO/INFOSYS)]
+      DB[(SQLite DB\nusers, predictions)]
+    end
+
+    U <--> FE
+    A <--> FE
+    FE <--> API
+    API --> DP
+    DP <--> CSV
+    API --> LSTM
+    API --> CG
+    API <--> DB
+    API <--> YF
+
+    U -- credentials/actions --> FE
+    FE -- HTTP requests --> API
+    API -- read/validate --> DP
+    DP -- historical OHLC --> API
+    API -- prediction payload --> FE
+    API -- save prediction --> DB
+    API -- current price --> YF
+    YF -- live price --> API
+    FE -- charts request --> API
+    API -- charts JSON --> FE
+
+
+
+

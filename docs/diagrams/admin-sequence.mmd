@@ -1,0 +1,44 @@
+sequenceDiagram
+  autonumber
+  participant Admin as Admin User
+  participant ReactApp
+  participant API as API Service (Axios)
+  participant Flask as Flask Backend
+  participant Auth as Flask-Login
+  participant DB as MongoDB
+
+  Admin->>ReactApp: Login (admin)
+  ReactApp->>API: POST /api/login
+  API->>Flask: /api/login
+  Flask->>Auth: validate + set is_admin
+  Flask-->>API: { user:{ is_admin:true } }
+  API-->>ReactApp: store session/cookie
+
+  Admin->>ReactApp: Open Admin Dashboard
+  ReactApp->>API: GET /api/admin/predictions
+  API->>Flask: /api/admin/predictions (login_required)
+  Flask->>Auth: check current_user.is_admin
+  Auth-->>Flask: allowed
+  Flask->>DB: get all predictions
+  DB-->>Flask: predictions[]
+  Flask-->>API: { predictions:[...] }
+  API-->>ReactApp: render table
+
+  Admin->>ReactApp: Edit a prediction
+  ReactApp->>API: PUT /api/admin/predictions/:id
+  API->>Flask: authorize admin
+  Flask->>DB: update prediction
+  DB-->>Flask: ok
+  Flask-->>API: 200 updated
+  API-->>ReactApp: update row
+
+  Admin->>ReactApp: Delete a prediction
+  ReactApp->>API: DELETE /api/admin/predictions/:id
+  API->>Flask: authorize admin
+  Flask->>DB: delete prediction
+  DB-->>Flask: ok
+  Flask-->>API: 200 deleted
+  API-->>ReactApp: remove row
+
+
+
